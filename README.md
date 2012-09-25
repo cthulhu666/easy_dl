@@ -18,7 +18,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```haml
+= definition_list_for(@person) do |d|
+  = d.item :name
+  = d.item :surname
+  = d.item :born do |person|
+    = person.date_of_birth.year
+```
 
 ## Contributing
 
