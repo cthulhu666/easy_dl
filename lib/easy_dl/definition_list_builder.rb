@@ -15,7 +15,7 @@ module EasyDl
 
       concat tag(:dd)
       if block_given?
-        yield
+        yield @obj
       else
         concat @obj.send(name)
       end
