@@ -6,14 +6,15 @@ module EasyDl
     def initialize(obj, template)
       @obj = obj
       @template = template
+      @is_active_record = obj.respond_to?(:to_model)
     end
 
     def item(name)
-      concat tag(:dt)
-      concat I18n.t("activerecord.attributes.#{@obj.class.name.downcase}.#{name}")
+      concat tag(:dt, nil, true, true)
+      concat try_translate(name)
       concat '</dt>'
 
-      concat tag(:dd)
+      concat tag(:dd, nil, true, true)
       if block_given?
         yield @obj
       else
@@ -24,6 +25,11 @@ module EasyDl
     end
 
     private
+
+    def try_translate(name)
+      @is_active_record ?
+        I18n.t("activerecord.attributes.#{@obj.class.name.downcase}.#{name}") : name.to_s
+    end
 
     def concat(str)
       str ||= '-'

@@ -14,6 +14,14 @@ class DlHelperTest < ActionView::TestCase
     should "have 'easy' class" do
       assert_select 'dl.easy'
     end
+
+    should "have 2 <dt> tags" do
+      assert_select 'dl dt', 2
+    end
+
+    should "have 2 <dd> tags" do
+      assert_select 'dl dd', 2
+    end
   end
 
 end
