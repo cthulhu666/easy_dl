@@ -1,6 +1,6 @@
 module EasyDl
 
-  class DetailsBuilder
+  class DefinitionListBuilder
     include ::ActionView::Helpers::TagHelper
 
     def initialize(obj, template)
