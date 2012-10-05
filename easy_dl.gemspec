@@ -4,8 +4,8 @@ require File.expand_path('../lib/easy_dl/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Jakub Głuszecki"]
   gem.email         = ["jakub.gluszecki@expander.pl"]
-  gem.description   = %q{Gem for generating html definition lists}
-  gem.summary       = %q{Gem for generating html definition lists}
+  gem.description   = %q{Gem for generating html definition lists in Rails 3}
+  gem.summary       = %q{Gem for generating html definition lists in Rails 3}
   gem.homepage      = "https://github.com/cthulhu666/easy_dl"
 
   gem.files         = `git ls-files`.split($\)
