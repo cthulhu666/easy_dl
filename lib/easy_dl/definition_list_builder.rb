@@ -18,7 +18,9 @@ module EasyDl
       if block_given?
         yield @obj
       else
-        concat @obj.send(name)
+        if val = @obj.send(name)
+          concat(val.to_s)
+        end
       end
       concat '</dd>'
 

@@ -22,6 +22,21 @@ class DlHelperTest < ActionView::TestCase
     should "have 2 <dd> tags" do
       assert_select 'dl dd', 2
     end
+
+    context '' do
+
+      setup do
+        @person = OpenStruct.new(name: 'John', surname: 'Doe', age: 30)
+        concat(definition_list_for(@person, class: 'second') do |d|
+          d.item :age
+        end)
+      end
+
+      should "print textual values of age attribute" do
+        assert_select 'dl.second dd', '30'
+      end
+
+    end
   end
 
 end
