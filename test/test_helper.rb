@@ -26,4 +26,8 @@ I18n.default_locale = :en
 class ActionView::TestCase
   include EasyDl::DlHelper
 
+  def html_escape(value)
+    value.to_s.gsub(/[&<>"]/) { |s| {'&' => '&amp;', '<' => '&lt;', '>' => '&gt;', '"' => '&quot;', "'" => '&#039;', }[s] }
+  end
+
 end

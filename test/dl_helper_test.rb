@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.expand_path("../test_helper", __FILE__)
 
 class DlHelperTest < ActionView::TestCase
 
@@ -21,6 +21,20 @@ class DlHelperTest < ActionView::TestCase
 
     should "have 2 <dd> tags" do
       assert_select 'dl dd', 2
+    end
+  end
+
+  context 'malicious definition list' do
+    setup do
+      @person = OpenStruct.new(name: '<script>alert("John")</alert>', surname: '<script>alert("Doe")</alert>')
+      concat(definition_list_for(@person, class: 'easy2') do |d|
+        d.item :name
+        d.item :surname
+      end)
+    end
+
+    should 'escape html tags' do
+      assert_select '.easy2 dd', "&lt;script&gt;alert(&quot;John&quot;)&lt;/alert&gt;"
     end
   end
 
